@@ -3,6 +3,28 @@ Java library used generate global grids using cylindrical projections such as th
 Behrmann equal area projection or Web Mercator.
 
 
+# Usage
+The GridBuilder.createGrid() method is used to generate grid cells. For performance
+reasons, the cells can be generated in separate threads. The caller is notified
+when an individual thread creates a cell via the GridBuilder.CallBack. Note
+that the add() will be called asynchronously when using multiple threads so make
+sure your implementation of the add() method is synchronized! Example:
+``` java
+    GridBuilder grid = new GridBuilder(proj);
+    grid.createGrid(shape, level, density, geom, numThreads,
+        new GridBuilder.CallBack() {
+
+            public synchronized void add(GridCell cell){
+                System.out.println(cell.getGeom());
+            }
+
+            public void done(){
+                System.out.println("Done!");
+            }
+        }
+    );
+```
+
 # Dependencies
 This library relies on GeoTools, JTS, and JavaXT. All the requisite JAR files
 are found in the lib directory.
