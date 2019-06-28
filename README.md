@@ -39,3 +39,12 @@ Here's an example:
 
 }
 ```
+
+# Java Compatibility
+Note that the current implementation of this library requires Java 1.8.
+
+
+# License
+This is an open source project released under an MIT License. See the LICENSE.txt file for specifics.
+Feel free to use the code and information found here as you like. This software comes with no guarantees or warranties.
+You may use this software in any open source or commercial project.
